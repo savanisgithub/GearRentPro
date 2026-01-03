@@ -76,8 +76,4 @@ public class BranchDAO {
         ps.setInt(1, id);
         ps.executeUpdate();
     }
-
-    public void create(Branch b) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }

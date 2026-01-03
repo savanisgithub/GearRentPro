@@ -44,5 +44,4 @@ public class Session {
         username = null;
         role = null;
     }
-
 }

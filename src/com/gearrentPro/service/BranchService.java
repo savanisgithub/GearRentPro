@@ -21,7 +21,7 @@ public class BranchService {
         if (!Session.isAdmin()) throw new SecurityException("Access denied. Admin only.");
 
         validate(b);
-        dao.create(b);
+        dao.save(b);
     }
 
     public void update(Branch b) throws Exception {
