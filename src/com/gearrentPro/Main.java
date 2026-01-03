@@ -8,13 +8,38 @@ package com.gearrentPro;
  *
  * @author User
  */
-public class Main {
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
+import util.AppNavigator;
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        // TODO code application logic here
+public class Main extends Application {
+
+     @Override
+     public void start(Stage stage) {
+        try {
+            AppNavigator.setStage(stage);
+
+            FXMLLoader loader = new FXMLLoader(
+                Main.class.getResource("/com/gearrentPro/view/LoginView.fxml")
+            );
+
+            Scene scene = new Scene(loader.load());
+            stage.setTitle("GearRent Pro");
+            stage.setScene(scene);
+            stage.centerOnScreen();
+            stage.show();
+
+        } catch (Exception e) {
+            System.out.println("❌ Failed to load FXML");
+            e.printStackTrace();
+        }
     }
-    
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+
 }
+
