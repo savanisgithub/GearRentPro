@@ -30,7 +30,7 @@ public class ManagerDashboardController {
     @FXML
     void openCategoryManagement() throws Exception {
         AnchorPane pane = FXMLLoader.load(
-                getClass().getResource("/view/CategoryManagement.fxml"));
+                getClass().getResource("/com/gearrentPro/view/CategoryManagement.fxml"));
         Stage stage = new Stage();
         stage.setScene(new Scene(pane));
         stage.show();
@@ -41,7 +41,7 @@ public class ManagerDashboardController {
         try {
             Session.clear();
             AnchorPane login = FXMLLoader.load(
-                    getClass().getResource("/view/LoginView.fxml"));
+                    getClass().getResource("/com/gearrentPro/view/LoginView.fxml"));
             Stage stage = (Stage) login.getScene().getWindow();
             stage.setScene(new Scene(login));
         } catch (Exception e) {

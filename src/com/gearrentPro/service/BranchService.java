@@ -33,7 +33,7 @@ public class BranchService {
     }
 
     public void delete(int id) throws Exception {
-        if (!Session.isAdmin()) throw new SecurityException("Access denied. Admin only.");
+        if (!Session.isAdmin() ) throw new SecurityException("Access denied. Admin only.");
         dao.delete(id);
     }
 

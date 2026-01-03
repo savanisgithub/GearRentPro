@@ -73,4 +73,9 @@ public class Category {
         this.active = active;
     }
     
+    @Override
+    public String toString() {
+        return name;
+    }
+    
 }
