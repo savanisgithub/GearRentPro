@@ -21,6 +21,9 @@ import javafx.stage.Stage;
 public class AdminDashboardController {
 
     @FXML
+    private AnchorPane AnchorPane;
+
+    @FXML
     private MenuItem menuBranches;
 
     @FXML
@@ -33,7 +36,6 @@ public class AdminDashboardController {
         if (Session.getRole() != UserRole.ADMIN) {
             new Alert(Alert.AlertType.ERROR,
                     "Access denied! Admin only.").showAndWait();
-            logout();
             return;
         }
 
@@ -63,14 +65,25 @@ public class AdminDashboardController {
     }
 
     @FXML
+    void openEquipmentManagement() throws Exception {
+        AnchorPane pane = FXMLLoader.load(
+                getClass().getResource("/com/gearrentPro/view/EquipmentManagement.fxml"));
+
+        Stage stage = new Stage();
+        stage.setTitle("Equipment Management");
+        stage.setScene(new Scene(pane));
+        stage.show();
+    }
+
+    @FXML
     void logout() {
         try {
             Session.clear();
             AnchorPane login = FXMLLoader.load(
                     getClass().getResource("/com/gearrentPro/view/LoginView.fxml"));
-            Stage stage = (Stage) menuBranches.getParentPopup()
-                    .getOwnerWindow();
+            Stage stage = (Stage) AnchorPane.getScene().getWindow();
             stage.setScene(new Scene(login));
+            stage.centerOnScreen();
         } catch (Exception e) {
             e.printStackTrace();
         }

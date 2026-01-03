@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -18,13 +19,20 @@ import javafx.stage.Stage;
  * @author User
  */
 public class ManagerDashboardController {
+
+    @FXML
+    private AnchorPane AnchorPane;
+
+//    @FXML
+//    private MenuItem menuCategories;
     public void initialize() {
         if (Session.getRole() != UserRole.BRANCH_MANAGER) {
             new Alert(Alert.AlertType.ERROR,
                     "Access denied! Branch Manager only.")
                     .showAndWait();
-            logout();
+            return;
         }
+//        menuCategories.setDisable(false);
     }
 
     @FXML
@@ -37,13 +45,25 @@ public class ManagerDashboardController {
     }
 
     @FXML
+    void openEquipmentManagement() throws Exception {
+        AnchorPane pane = FXMLLoader.load(
+                getClass().getResource("/com/gearrentPro/view/EquipmentManagement.fxml"));
+
+        Stage stage = new Stage();
+        stage.setTitle("Equipment Management");
+        stage.setScene(new Scene(pane));
+        stage.show();
+    }
+
+    @FXML
     void logout() {
         try {
             Session.clear();
             AnchorPane login = FXMLLoader.load(
                     getClass().getResource("/com/gearrentPro/view/LoginView.fxml"));
-            Stage stage = (Stage) login.getScene().getWindow();
+            Stage stage = (Stage) AnchorPane.getScene().getWindow();
             stage.setScene(new Scene(login));
+            stage.centerOnScreen();
         } catch (Exception e) {
             e.printStackTrace();
         }

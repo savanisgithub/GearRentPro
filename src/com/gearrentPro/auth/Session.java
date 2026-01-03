@@ -11,13 +11,22 @@ import com.gearrentPro.entity.UserRole;
  * @author User
  */
 public class Session {
+
+    private static Integer userId;
     private static String username;
     private static UserRole role;
+    private static Integer branchId;
 
-    // 🔹 STORE LOGGED USER DATA (NO EXCEPTIONS HERE)
-    public static void set(String u, UserRole r) {
-        username = u;
+    // SET SESSION AFTER LOGIN
+    public static void set(int uid, String uname, UserRole r, Integer bId) {
+        userId = uid;
+        username = uname;
         role = r;
+        branchId = bId;
+    }
+
+    public static int getUserId() {
+        return userId;
     }
 
     public static String getUsername() {
@@ -28,6 +37,11 @@ public class Session {
         return role;
     }
 
+    public static Integer getBranchId() {
+        return branchId;
+    }
+
+    // ---- ROLE HELPERS ----
     public static boolean isAdmin() {
         return role == UserRole.ADMIN;
     }
@@ -40,8 +54,11 @@ public class Session {
         return role == UserRole.STAFF;
     }
 
+    // ---- CLEAR SESSION ----
     public static void clear() {
+        userId = null;
         username = null;
         role = null;
+        branchId = null;
     }
 }

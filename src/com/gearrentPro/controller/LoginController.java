@@ -42,7 +42,7 @@ public class LoginController {
                     txtPassword.getText()
             );
 
-            Session.set(user.getUsername(), user.getRole());
+            Session.set(user.getId(), user.getUsername(), user.getRole(), user.getBranchId() );
 
             AnchorPane dashboard;
 
